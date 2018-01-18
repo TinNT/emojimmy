@@ -14,8 +14,11 @@ module Emojimmy
           end
 
           # When calling the attribute name, convert its value
+          # TN:
+          # - Don't use super. Once object is cached it will raise no method error for superclass
+          # - Emojimmy.token_to_emoji(super)
           def #{attribute}
-            Emojimmy.token_to_emoji(super)
+            Emojimmy.token_to_emoji(self["#{attribute}"])
           end
         RUBY
       end
